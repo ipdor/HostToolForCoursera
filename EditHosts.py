@@ -9,6 +9,8 @@ def deleteOldRecords():
     file=""
     with open(hostsFile,"r") as f:
         file = f.readlines()
+    with open("hosts.backup","w") as f:
+        f.writelines(file)
     newfile=[]
     for x in file:
         if x.strip()=="":
@@ -19,8 +21,9 @@ def deleteOldRecords():
                 notContain*=-1
                 break
         if notContain==1:
-            newfile.append(x+"\n")
+            newfile.append(x)
             print(x)
+    newfile.append("\n")
     with open(hostsFile,"w") as f:
         f.writelines(newfile)
 
