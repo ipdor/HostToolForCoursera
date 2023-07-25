@@ -1,5 +1,6 @@
 import requests
 import re
+import os
 
 hosts=["www.coursera.org","www-cloudfront-alias.coursera.org", "d3c33hcgiwev3.cloudfront.net", "d3njjcbhbojbot.cloudfront.net"]
 hostsFile="C:\Windows\System32\drivers\etc\hosts"
@@ -23,7 +24,6 @@ def deleteOldRecords():
         if notContain==1:
             newfile.append(x)
             print(x)
-    newfile.append("\n")
     with open(hostsFile,"w") as f:
         f.writelines(newfile)
 
@@ -61,3 +61,4 @@ def getAddresses():
 if __name__ == "__main__":
     deleteOldRecords()
     getAddresses()
+	os.system('ipconfig /flushdns');
